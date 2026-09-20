@@ -1,0 +1,1835 @@
+/* ==========================================================
+   STACKEN — PREMIUM PERSONAL PROFILE
+   ----------------------------------------------------------
+   Identidade:
+   - Dark
+   - Cyber Tech discreto
+   - Glassmorphism
+   - Neon purple
+   - 3D depth
+   ========================================================== */
+
+
+/* ==========================================================
+   RESET / BASE
+   ========================================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    min-height: 100%;
+    background: #050505;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100svh;
+    margin: 0;
+
+    overflow: hidden;
+
+    color: #ffffff;
+
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            #120b1b 0%,
+            #080709 38%,
+            #050505 72%
+        );
+
+    font-family:
+        Inter,
+        ui-sans-serif,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Helvetica,
+        Arial,
+        sans-serif;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+::selection {
+    color: #ffffff;
+    background: rgba(168, 85, 247, 0.45);
+}
+
+
+/* ==========================================================
+   VARIÁVEIS
+   ========================================================== */
+
+:root {
+    --purple: #a855f7;
+    --purple-dark: #6d28d9;
+    --purple-deep: #4c1d95;
+
+    --black: #050505;
+    --soft-black: #0f0f0f;
+
+    --white: #ffffff;
+
+    --mouse-x: 50%;
+    --mouse-y: 50%;
+
+    --scene-x: 0px;
+    --scene-y: 0px;
+
+    --card-rx: 0deg;
+    --card-ry: 0deg;
+
+    --avatar-rx: 0deg;
+    --avatar-ry: 0deg;
+    --avatar-tx: 0px;
+    --avatar-ty: 0px;
+}
+
+
+/* ==========================================================
+   BACKGROUND
+   ========================================================== */
+
+.background {
+    position: fixed;
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+    z-index: 0;
+
+    opacity: 0;
+
+    animation:
+        backgroundReveal 1.3s cubic-bezier(.2, .8, .2, 1)
+        0.05s forwards;
+}
+
+.background__base {
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at var(--mouse-x) var(--mouse-y),
+            rgba(168, 85, 247, 0.105),
+            transparent 27%
+        ),
+        radial-gradient(
+            circle at 50% 120%,
+            rgba(76, 29, 149, 0.19),
+            transparent 46%
+        ),
+        linear-gradient(
+            145deg,
+            #050505 0%,
+            #080609 45%,
+            #050505 100%
+        );
+}
+
+
+/* Aurora / luzes difusas */
+
+.aurora {
+    position: absolute;
+
+    width: 52vw;
+    height: 52vw;
+
+    min-width: 500px;
+    min-height: 500px;
+
+    border-radius: 50%;
+
+    filter: blur(95px);
+
+    opacity: 0;
+
+    will-change: transform;
+
+    mix-blend-mode: screen;
+
+    animation:
+        auroraReveal 2s ease forwards,
+        auroraFloat 15s ease-in-out infinite alternate;
+}
+
+.aurora--one {
+    top: -34%;
+    left: -15%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(168, 85, 247, 0.19),
+            rgba(109, 40, 217, 0.07) 44%,
+            transparent 72%
+        );
+
+    animation-delay: 0.1s, 0s;
+}
+
+.aurora--two {
+    right: -24%;
+    bottom: -38%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(109, 40, 217, 0.16),
+            rgba(76, 29, 149, 0.07) 46%,
+            transparent 72%
+        );
+
+    animation-delay: 0.3s, -4s;
+}
+
+.aurora--three {
+    width: 36vw;
+    height: 36vw;
+
+    min-width: 350px;
+    min-height: 350px;
+
+    top: 34%;
+    left: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(168, 85, 247, 0.09),
+            transparent 68%
+        );
+
+    animation-delay: 0.45s, -7s;
+}
+
+
+/* Grid futurista extremamente sutil */
+
+.background__grid {
+    position: absolute;
+    inset: -20%;
+
+    opacity: 0.12;
+
+    background-image:
+        linear-gradient(
+            rgba(168, 85, 247, 0.04) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(168, 85, 247, 0.04) 1px,
+            transparent 1px
+        );
+
+    background-size: 70px 70px;
+
+    mask-image:
+        radial-gradient(
+            circle at center,
+            black,
+            transparent 72%
+        );
+
+    -webkit-mask-image:
+        radial-gradient(
+            circle at center,
+            black,
+            transparent 72%
+        );
+
+    transform:
+        perspective(900px)
+        rotateX(66deg)
+        translateY(31%);
+
+    transform-origin: center center;
+}
+
+
+/* Orbs */
+
+.orb {
+    position: absolute;
+
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.025),
+            rgba(168, 85, 247, 0.018)
+        );
+
+    box-shadow:
+        inset 0 0 30px rgba(168, 85, 247, 0.025),
+        0 0 40px rgba(168, 85, 247, 0.025);
+
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+
+    will-change: transform;
+}
+
+.orb--one {
+    width: 130px;
+    height: 130px;
+
+    top: 14%;
+    right: 13%;
+
+    transform:
+        translate(
+            calc(var(--scene-x) * -0.5),
+            calc(var(--scene-y) * -0.5)
+        );
+
+    animation: orbFloatOne 8s ease-in-out infinite;
+}
+
+.orb--two {
+    width: 70px;
+    height: 70px;
+
+    bottom: 17%;
+    left: 16%;
+
+    transform:
+        translate(
+            calc(var(--scene-x) * 0.65),
+            calc(var(--scene-y) * 0.65)
+        );
+
+    animation: orbFloatTwo 10s ease-in-out infinite;
+}
+
+
+/* Canvas de partículas */
+
+#particleCanvas {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+
+    animation:
+        particlesReveal 2.1s ease 0.4s forwards;
+}
+
+
+/* Ruído / textura */
+
+.background__noise {
+    position: absolute;
+    inset: 0;
+
+    opacity: 0.022;
+
+    background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.7'/%3E%3C/svg%3E");
+
+    pointer-events: none;
+}
+
+
+/* Vignette */
+
+.background__vignette {
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            transparent 38%,
+            rgba(0, 0, 0, 0.28) 75%,
+            rgba(0, 0, 0, 0.7) 120%
+        );
+}
+
+
+/* ==========================================================
+   PÁGINA / CENA
+   ========================================================== */
+
+.profile-page {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100svh;
+
+    display: grid;
+    place-items: center;
+
+    padding:
+        max(24px, env(safe-area-inset-top))
+        max(20px, env(safe-area-inset-right))
+        max(24px, env(safe-area-inset-bottom))
+        max(20px, env(safe-area-inset-left));
+
+    perspective: 1200px;
+}
+
+
+/* ==========================================================
+   DECORAÇÕES DA CENA
+   ========================================================== */
+
+.scene-decoration {
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    transform:
+        translate(
+            var(--scene-x),
+            var(--scene-y)
+        );
+
+    transition: transform 0.08s linear;
+}
+
+.scene-dot {
+    position: absolute;
+
+    display: block;
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: rgba(216, 180, 254, 0.8);
+
+    box-shadow:
+        0 0 8px rgba(168, 85, 247, 0.9),
+        0 0 24px rgba(168, 85, 247, 0.4);
+
+    animation: dotPulse 4s ease-in-out infinite;
+}
+
+.scene-dot--one {
+    top: 23%;
+    left: 20%;
+}
+
+.scene-dot--two {
+    top: 31%;
+    right: 19%;
+
+    width: 3px;
+    height: 3px;
+
+    animation-delay: -1.4s;
+}
+
+.scene-dot--three {
+    bottom: 23%;
+    right: 25%;
+
+    width: 2px;
+    height: 2px;
+
+    animation-delay: -2.8s;
+}
+
+
+/* ==========================================================
+   CARD PRINCIPAL
+   ========================================================== */
+
+.profile-card {
+    position: relative;
+
+    width: min(92vw, 460px);
+
+    padding: 48px 38px 40px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    overflow: hidden;
+
+    isolation: isolate;
+
+    border: 1px solid rgba(255, 255, 255, 0.09);
+
+    border-radius: 32px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(24, 22, 27, 0.73),
+            rgba(9, 8, 11, 0.64)
+        );
+
+    box-shadow:
+        0 30px 90px rgba(0, 0, 0, 0.52),
+        0 10px 30px rgba(0, 0, 0, 0.35),
+        0 0 0 1px rgba(168, 85, 247, 0.025),
+        0 0 80px rgba(109, 40, 217, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.055),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.018);
+
+    backdrop-filter:
+        blur(24px)
+        saturate(130%);
+
+    -webkit-backdrop-filter:
+        blur(24px)
+        saturate(130%);
+
+    transform-style: preserve-3d;
+
+    transform:
+        rotateX(var(--card-rx))
+        rotateY(var(--card-ry))
+        translateZ(0)
+        scale(1);
+
+    will-change: transform;
+
+    opacity: 0;
+
+    animation:
+        cardReveal 1.15s cubic-bezier(.16, 1, .3, 1)
+        0.45s forwards;
+
+    transition:
+        box-shadow 0.5s ease,
+        border-color 0.5s ease;
+}
+
+.profile-card:hover {
+    border-color: rgba(168, 85, 247, 0.17);
+
+    box-shadow:
+        0 36px 110px rgba(0, 0, 0, 0.62),
+        0 14px 35px rgba(0, 0, 0, 0.38),
+        0 0 0 1px rgba(168, 85, 247, 0.04),
+        0 0 95px rgba(109, 40, 217, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+
+/* Iluminação dinâmica */
+
+.card-light {
+    position: absolute;
+    z-index: -1;
+
+    inset: -1px;
+
+    border-radius: inherit;
+
+    opacity: 0.8;
+
+    background:
+        radial-gradient(
+            420px circle at var(--mouse-x) var(--mouse-y),
+            rgba(168, 85, 247, 0.12),
+            transparent 42%
+        );
+
+    pointer-events: none;
+}
+
+
+/* Reflexo superior */
+
+.card-reflection {
+    position: absolute;
+
+    z-index: 0;
+
+    top: -30%;
+    left: -35%;
+
+    width: 90%;
+    height: 65%;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(255, 255, 255, 0.075),
+            rgba(168, 85, 247, 0.025) 35%,
+            transparent 70%
+        );
+
+    filter: blur(20px);
+
+    transform: rotate(-25deg);
+
+    pointer-events: none;
+}
+
+
+/* Glow sutil da borda */
+
+.card-border-glow {
+    position: absolute;
+    inset: 0;
+
+    z-index: 5;
+
+    border-radius: inherit;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            125deg,
+            rgba(255, 255, 255, 0.12),
+            transparent 17%,
+            transparent 72%,
+            rgba(168, 85, 247, 0.06)
+        );
+
+    mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+
+    padding: 1px;
+}
+
+
+/* ==========================================================
+   AVATAR
+   ========================================================== */
+
+.avatar-section {
+    position: relative;
+
+    z-index: 3;
+
+    display: grid;
+    place-items: center;
+
+    transform: translateZ(55px);
+
+    opacity: 0;
+
+    animation:
+        avatarReveal 1s cubic-bezier(.16, 1, .3, 1)
+        0.85s forwards;
+}
+
+.avatar-aura {
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(168, 85, 247, 0.19),
+            rgba(109, 40, 217, 0.05) 42%,
+            transparent 70%
+        );
+
+    filter: blur(24px);
+
+    animation:
+        auraPulse 4s ease-in-out infinite;
+}
+
+.avatar-wrapper {
+    position: relative;
+
+    width: 156px;
+    height: 156px;
+
+    border-radius: 50%;
+
+    outline: none;
+
+    transform-style: preserve-3d;
+
+    transform:
+        translate3d(
+            var(--avatar-tx),
+            var(--avatar-ty),
+            0
+        )
+        rotateX(var(--avatar-rx))
+        rotateY(var(--avatar-ry));
+
+    will-change: transform;
+
+    transition:
+        filter 0.4s ease;
+}
+
+.avatar-wrapper:hover {
+    filter: brightness(1.04);
+}
+
+.avatar-wrapper:focus-visible,
+.fixer-badge:focus-visible {
+    outline: 2px solid rgba(168, 85, 247, 0.75);
+    outline-offset: 6px;
+}
+
+
+/* Anéis */
+
+.avatar-ring {
+    position: absolute;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+.avatar-ring--outer {
+    inset: -8px;
+
+    border: 1px solid rgba(168, 85, 247, 0.17);
+
+    box-shadow:
+        0 0 30px rgba(168, 85, 247, 0.14),
+        inset 0 0 25px rgba(168, 85, 247, 0.05);
+
+    animation:
+        ringBreath 4s ease-in-out infinite;
+}
+
+.avatar-ring--inner {
+    inset: -3px;
+
+    padding: 1px;
+
+    background:
+        conic-gradient(
+            from 180deg,
+            rgba(168, 85, 247, 0.25),
+            #a855f7,
+            rgba(255, 255, 255, 0.8),
+            #6d28d9,
+            rgba(168, 85, 247, 0.22)
+        );
+
+    mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+
+    animation: ringRotate 10s linear infinite;
+}
+
+
+/* Container da imagem */
+
+.avatar-image-container {
+    position: absolute;
+    inset: 0;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    background: #0b0b0c;
+
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.55),
+        0 0 30px rgba(168, 85, 247, 0.16),
+        inset 0 1px 2px rgba(255, 255, 255, 0.12);
+
+    transform: translateZ(15px);
+}
+
+.avatar-image {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    user-select: none;
+
+    transition:
+        transform 0.7s cubic-bezier(.16, 1, .3, 1),
+        filter 0.7s ease;
+}
+
+.avatar-wrapper:hover .avatar-image {
+    transform: scale(1.045);
+
+    filter:
+        contrast(1.025)
+        brightness(1.025);
+}
+
+
+/* Reflexo no avatar */
+
+.avatar-shine {
+    position: absolute;
+    inset: 0;
+
+    border-radius: inherit;
+
+    background:
+        radial-gradient(
+            circle at var(--mouse-x) var(--mouse-y),
+            rgba(255, 255, 255, 0.22),
+            transparent 26%
+        ),
+        linear-gradient(
+            130deg,
+            rgba(255, 255, 255, 0.1),
+            transparent 32%
+        );
+
+    opacity: 0.35;
+
+    mix-blend-mode: screen;
+
+    pointer-events: none;
+
+    transition: opacity 0.35s ease;
+}
+
+.avatar-wrapper:hover .avatar-shine {
+    opacity: 0.58;
+}
+
+
+/* ==========================================================
+   FIXER BADGE
+   ========================================================== */
+
+.fixer-badge {
+    position: absolute;
+
+    right: -5px;
+    bottom: 2px;
+
+    z-index: 10;
+
+    width: 50px;
+    height: 50px;
+
+    display: grid;
+    place-items: center;
+
+    padding: 3px;
+
+    cursor: default;
+
+    border: 1px solid rgba(255, 255, 255, 0.17);
+
+    border-radius: 50%;
+
+    outline: none;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(22, 19, 27, 0.96),
+            rgba(8, 7, 10, 0.98)
+        );
+
+    box-shadow:
+        0 8px 22px rgba(0, 0, 0, 0.55),
+        0 0 20px rgba(168, 85, 247, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+
+    transform:
+        translateZ(45px)
+        scale(1);
+
+    animation:
+        fixerFloat 3.8s ease-in-out infinite;
+
+    transition:
+        box-shadow 0.35s ease,
+        border-color 0.35s ease,
+        filter 0.35s ease;
+}
+
+.fixer-badge:hover {
+    border-color: rgba(216, 180, 254, 0.45);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.6),
+        0 0 15px rgba(168, 85, 247, 0.55),
+        0 0 35px rgba(109, 40, 217, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.16);
+
+    filter: brightness(1.08);
+}
+
+.fixer-badge__glow {
+    position: absolute;
+
+    inset: -8px;
+
+    border-radius: inherit;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(168, 85, 247, 0.18),
+            transparent 68%
+        );
+
+    filter: blur(6px);
+
+    animation:
+        badgeGlow 3s ease-in-out infinite;
+
+    pointer-events: none;
+}
+
+.fixer-image {
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    user-select: none;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+
+/* ==========================================================
+   TEXTO / IDENTIDADE
+   ========================================================== */
+
+.profile-content {
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
+
+    margin-top: 33px;
+
+    text-align: center;
+
+    transform: translateZ(32px);
+}
+
+
+/* Status */
+
+.status-line {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    margin-bottom: 12px;
+
+    color: rgba(255, 255, 255, 0.37);
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: 0.26em;
+
+    opacity: 0;
+
+    animation:
+        textReveal 0.9s cubic-bezier(.16, 1, .3, 1)
+        1.05s forwards;
+}
+
+.status-indicator {
+    position: relative;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #b36cff;
+
+    box-shadow:
+        0 0 7px rgba(168, 85, 247, 0.75);
+}
+
+.status-indicator::after {
+    content: "";
+
+    position: absolute;
+    inset: -4px;
+
+    border: 1px solid rgba(168, 85, 247, 0.25);
+
+    border-radius: inherit;
+
+    animation:
+        statusPulse 2.2s ease-out infinite;
+}
+
+
+/* Nome */
+
+.profile-name {
+    margin: 0;
+
+    line-height: 0.95;
+
+    font-size: clamp(2.4rem, 9vw, 3.65rem);
+    font-weight: 800;
+
+    letter-spacing: 0.12em;
+
+    text-indent: 0.12em;
+
+    opacity: 0;
+
+    transform: translateY(12px);
+
+    animation:
+        nameReveal 1s cubic-bezier(.16, 1, .3, 1)
+        1.15s forwards;
+}
+
+.profile-name span {
+    position: relative;
+
+    display: inline-block;
+
+    color: transparent;
+
+    background:
+        linear-gradient(
+            110deg,
+            #ffffff 0%,
+            #f5e8ff 22%,
+            #c084fc 48%,
+            #a855f7 67%,
+            #ffffff 100%
+        );
+
+    background-size: 200% auto;
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    filter:
+        drop-shadow(
+            0 0 18px rgba(168, 85, 247, 0.2)
+        );
+
+    animation:
+        nameGradient 7s linear infinite;
+}
+
+.profile-name span::after {
+    content: "STACKEN";
+
+    position: absolute;
+    inset: 0;
+
+    z-index: -1;
+
+    color: rgba(168, 85, 247, 0.22);
+
+    filter: blur(14px);
+
+    opacity: 0.42;
+}
+
+
+/* Subtexto */
+
+.profile-role {
+    margin:
+        15px auto 0;
+
+    max-width: 340px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    color: rgba(255, 255, 255, 0.49);
+
+    font-size: 0.72rem;
+    font-weight: 500;
+
+    letter-spacing: 0.105em;
+
+    line-height: 1.8;
+
+    opacity: 0;
+
+    transform: translateY(9px);
+
+    animation:
+        subtitleReveal 1s cubic-bezier(.16, 1, .3, 1)
+        1.38s forwards;
+}
+
+.role-separator {
+    width: 3px;
+    height: 3px;
+
+    flex: 0 0 auto;
+
+    border-radius: 50%;
+
+    background: rgba(168, 85, 247, 0.78);
+
+    box-shadow:
+        0 0 8px rgba(168, 85, 247, 0.5);
+}
+
+
+/* Linha decorativa */
+
+.signature-line {
+    width: 95px;
+
+    margin: 24px auto 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    opacity: 0;
+
+    animation:
+        textReveal 1s ease
+        1.58s forwards;
+}
+
+.signature-line span {
+    width: 34px;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(168, 85, 247, 0.42)
+        );
+}
+
+.signature-line span:last-child {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(168, 85, 247, 0.42),
+            transparent
+        );
+}
+
+.signature-line i {
+    width: 4px;
+    height: 4px;
+
+    border: 1px solid rgba(192, 132, 252, 0.75);
+
+    transform: rotate(45deg);
+
+    box-shadow:
+        0 0 8px rgba(168, 85, 247, 0.4);
+}
+
+
+/* ==========================================================
+   CANTOS DECORATIVOS
+   ========================================================== */
+
+.card-details {
+    position: absolute;
+    inset: 17px;
+
+    z-index: 10;
+
+    pointer-events: none;
+
+    opacity: 0.35;
+}
+
+.corner {
+    position: absolute;
+
+    width: 11px;
+    height: 11px;
+}
+
+.corner--top-left {
+    top: 0;
+    left: 0;
+
+    border-top: 1px solid rgba(168, 85, 247, 0.6);
+    border-left: 1px solid rgba(168, 85, 247, 0.6);
+
+    border-radius: 4px 0 0 0;
+}
+
+.corner--top-right {
+    top: 0;
+    right: 0;
+
+    border-top: 1px solid rgba(168, 85, 247, 0.6);
+    border-right: 1px solid rgba(168, 85, 247, 0.6);
+
+    border-radius: 0 4px 0 0;
+}
+
+.corner--bottom-left {
+    bottom: 0;
+    left: 0;
+
+    border-bottom: 1px solid rgba(168, 85, 247, 0.6);
+    border-left: 1px solid rgba(168, 85, 247, 0.6);
+
+    border-radius: 0 0 0 4px;
+}
+
+.corner--bottom-right {
+    right: 0;
+    bottom: 0;
+
+    border-right: 1px solid rgba(168, 85, 247, 0.6);
+    border-bottom: 1px solid rgba(168, 85, 247, 0.6);
+
+    border-radius: 0 0 4px 0;
+}
+
+
+/* ==========================================================
+   TOOLTIP PREMIUM
+   ========================================================== */
+
+.premium-tooltip {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 9px 13px;
+
+    color: rgba(255, 255, 255, 0.92);
+
+    font-size: 11px;
+    font-weight: 650;
+
+    letter-spacing: 0.06em;
+
+    white-space: nowrap;
+
+    border: 1px solid rgba(168, 85, 247, 0.23);
+
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(22, 18, 27, 0.88),
+            rgba(8, 7, 10, 0.9)
+        );
+
+    box-shadow:
+        0 12px 32px rgba(0, 0, 0, 0.4),
+        0 0 25px rgba(168, 85, 247, 0.11),
+        inset 0 1px 0 rgba(255, 255, 255, 0.07);
+
+    backdrop-filter:
+        blur(16px)
+        saturate(150%);
+
+    -webkit-backdrop-filter:
+        blur(16px)
+        saturate(150%);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transform:
+        translate3d(-50%, 8px, 0)
+        scale(0.9);
+
+    transform-origin: center bottom;
+
+    transition:
+        opacity 0.24s ease,
+        visibility 0.24s ease,
+        transform 0.3s cubic-bezier(.16, 1, .3, 1);
+}
+
+.premium-tooltip.is-visible {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform:
+        translate3d(-50%, 0, 0)
+        scale(1);
+}
+
+.tooltip-dot {
+    width: 5px;
+    height: 5px;
+
+    flex: 0 0 auto;
+
+    border-radius: 50%;
+
+    background: #a855f7;
+
+    box-shadow:
+        0 0 8px rgba(168, 85, 247, 0.9),
+        0 0 16px rgba(168, 85, 247, 0.45);
+}
+
+
+/* ==========================================================
+   ANIMAÇÕES
+   ========================================================== */
+
+@keyframes backgroundReveal {
+    from {
+        opacity: 0;
+        transform: scale(1.025);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes particlesReveal {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 0.72;
+    }
+}
+
+@keyframes auroraReveal {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes auroraFloat {
+    0% {
+        transform:
+            translate3d(-2%, -1%, 0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate3d(5%, 3%, 0)
+            scale(1.07);
+    }
+
+    100% {
+        transform:
+            translate3d(-1%, 6%, 0)
+            scale(0.97);
+    }
+}
+
+@keyframes cardReveal {
+    0% {
+        opacity: 0;
+
+        transform:
+            rotateX(7deg)
+            rotateY(-3deg)
+            translateY(32px)
+            scale(0.955);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            rotateX(var(--card-rx))
+            rotateY(var(--card-ry))
+            translateY(0)
+            scale(1);
+    }
+}
+
+@keyframes avatarReveal {
+    0% {
+        opacity: 0;
+
+        transform:
+            translateZ(55px)
+            translateY(16px)
+            scale(0.76);
+
+        filter: blur(8px);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translateZ(55px)
+            translateY(0)
+            scale(1);
+
+        filter: blur(0);
+    }
+}
+
+@keyframes nameReveal {
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(12px)
+            scale(0.98);
+
+        filter: blur(5px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        filter: blur(0);
+    }
+}
+
+@keyframes subtitleReveal {
+    from {
+        opacity: 0;
+
+        transform: translateY(9px);
+
+        filter: blur(4px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+
+        filter: blur(0);
+    }
+}
+
+@keyframes textReveal {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes nameGradient {
+    0% {
+        background-position: 0% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+@keyframes ringRotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes ringBreath {
+    0%,
+    100% {
+        transform: scale(1);
+
+        opacity: 0.65;
+    }
+
+    50% {
+        transform: scale(1.025);
+
+        opacity: 1;
+    }
+}
+
+@keyframes auraPulse {
+    0%,
+    100% {
+        opacity: 0.55;
+
+        transform: scale(0.92);
+    }
+
+    50% {
+        opacity: 0.9;
+
+        transform: scale(1.07);
+    }
+}
+
+@keyframes fixerFloat {
+    0%,
+    100% {
+        transform:
+            translateZ(45px)
+            translateY(0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translateZ(45px)
+            translateY(-4px)
+            scale(1.025);
+    }
+}
+
+@keyframes badgeGlow {
+    0%,
+    100% {
+        opacity: 0.5;
+
+        transform: scale(0.9);
+    }
+
+    50% {
+        opacity: 1;
+
+        transform: scale(1.08);
+    }
+}
+
+@keyframes statusPulse {
+    0% {
+        opacity: 0.7;
+
+        transform: scale(0.6);
+    }
+
+    70%,
+    100% {
+        opacity: 0;
+
+        transform: scale(1.8);
+    }
+}
+
+@keyframes dotPulse {
+    0%,
+    100% {
+        opacity: 0.25;
+
+        transform: scale(0.75);
+    }
+
+    50% {
+        opacity: 1;
+
+        transform: scale(1.15);
+    }
+}
+
+@keyframes orbFloatOne {
+    0%,
+    100% {
+        margin-top: 0;
+    }
+
+    50% {
+        margin-top: -18px;
+    }
+}
+
+@keyframes orbFloatTwo {
+    0%,
+    100% {
+        margin-bottom: 0;
+    }
+
+    50% {
+        margin-bottom: -15px;
+    }
+}
+
+
+/* ==========================================================
+   RESPONSIVIDADE
+   ========================================================== */
+
+@media (max-width: 600px) {
+
+    .profile-page {
+        padding: 18px;
+    }
+
+    .profile-card {
+        width: min(94vw, 400px);
+
+        padding:
+            42px
+            24px
+            34px;
+
+        border-radius: 27px;
+    }
+
+    .avatar-wrapper {
+        width: 138px;
+        height: 138px;
+    }
+
+    .avatar-aura {
+        width: 160px;
+        height: 160px;
+    }
+
+    .fixer-badge {
+        width: 46px;
+        height: 46px;
+
+        right: -6px;
+    }
+
+    .profile-content {
+        margin-top: 29px;
+    }
+
+    .profile-name {
+        font-size: clamp(2.25rem, 13vw, 3rem);
+    }
+
+    .profile-role {
+        max-width: 290px;
+
+        gap: 7px;
+
+        font-size: 0.65rem;
+
+        letter-spacing: 0.08em;
+    }
+
+    .orb--one {
+        right: -40px;
+    }
+
+    .orb--two {
+        left: -25px;
+    }
+
+    .background__grid {
+        opacity: 0.08;
+    }
+}
+
+
+@media (max-width: 370px) {
+
+    .profile-card {
+        padding:
+            36px
+            18px
+            30px;
+    }
+
+    .avatar-wrapper {
+        width: 124px;
+        height: 124px;
+    }
+
+    .avatar-aura {
+        width: 145px;
+        height: 145px;
+    }
+
+    .fixer-badge {
+        width: 42px;
+        height: 42px;
+    }
+
+    .profile-name {
+        font-size: 2.05rem;
+    }
+
+    .profile-role {
+        font-size: 0.6rem;
+    }
+}
+
+
+/* Telas baixas, como notebooks com viewport reduzida */
+
+@media (max-height: 650px) and (min-width: 601px) {
+
+    .profile-card {
+        padding:
+            30px
+            34px
+            27px;
+    }
+
+    .avatar-wrapper {
+        width: 128px;
+        height: 128px;
+    }
+
+    .avatar-aura {
+        width: 150px;
+        height: 150px;
+    }
+
+    .fixer-badge {
+        width: 44px;
+        height: 44px;
+    }
+
+    .profile-content {
+        margin-top: 25px;
+    }
+
+    .profile-name {
+        font-size: 3rem;
+    }
+
+    .signature-line {
+        margin-top: 17px;
+    }
+}
+
+
+/* ==========================================================
+   DISPOSITIVOS SEM HOVER
+   ========================================================== */
+
+@media (hover: none), (pointer: coarse) {
+
+    .profile-card {
+        transform: none !important;
+    }
+
+    .avatar-wrapper {
+        transform: none !important;
+    }
+
+    .avatar-shine {
+        opacity: 0.28;
+    }
+}
+
+
+/* ==========================================================
+   ACESSIBILIDADE — REDUCED MOTION
+
+   Caso o usuário do sistema tenha solicitado menos animações,
+   os principais movimentos são reduzidos automaticamente.
+   ========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+    }
+
+    .profile-card,
+    .avatar-wrapper,
+    .scene-decoration {
+        transform: none !important;
+    }
+}

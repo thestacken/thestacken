@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta
+        name="description"
+        content="STACKEN — Technology Enthusiast, Developer & Fixer."
+    >
+
+    <meta name="theme-color" content="#050505">
+
+    <title>STACKEN — Developer & Fixer</title>
+
+    <!-- CSS externo -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         BACKGROUND
+         Camadas independentes criam profundidade, iluminação
+         e movimento sem poluir o layout principal.
+    ====================================================== -->
+    <div class="background" aria-hidden="true">
+        <div class="background__base"></div>
+
+        <div class="aurora aurora--one"></div>
+        <div class="aurora aurora--two"></div>
+        <div class="aurora aurora--three"></div>
+
+        <div class="background__grid"></div>
+
+        <div class="orb orb--one"></div>
+        <div class="orb orb--two"></div>
+
+        <canvas id="particleCanvas"></canvas>
+
+        <div class="background__noise"></div>
+        <div class="background__vignette"></div>
+    </div>
+
+
+    <!-- =====================================================
+         CONTEÚDO PRINCIPAL
+    ====================================================== -->
+    <main class="profile-page">
+
+        <!-- Elementos decorativos de profundidade -->
+        <div class="scene-decoration" aria-hidden="true">
+            <span class="scene-dot scene-dot--one"></span>
+            <span class="scene-dot scene-dot--two"></span>
+            <span class="scene-dot scene-dot--three"></span>
+        </div>
+
+
+        <!-- =================================================
+             CARD PRINCIPAL
+             data-tilt é usado pelo JS para o efeito 3D.
+        ================================================== -->
+        <article
+            class="profile-card"
+            id="profileCard"
+            data-tilt
+            aria-labelledby="profileName"
+        >
+
+            <!-- Iluminação que acompanha o cursor -->
+            <div class="card-light" aria-hidden="true"></div>
+
+            <!-- Reflexo superior -->
+            <div class="card-reflection" aria-hidden="true"></div>
+
+            <!-- Linha interna premium -->
+            <div class="card-border-glow" aria-hidden="true"></div>
+
+
+            <!-- =============================================
+                 AVATAR
+            ============================================== -->
+            <div class="avatar-section">
+
+                <div class="avatar-aura" aria-hidden="true"></div>
+
+                <div
+                    class="avatar-wrapper tooltip-target"
+                    id="avatarWrapper"
+                    data-tooltip="The Better!"
+                    tabindex="0"
+                    aria-label="STACKEN — The Better!"
+                >
+                    <div class="avatar-ring avatar-ring--outer"></div>
+                    <div class="avatar-ring avatar-ring--inner"></div>
+
+                    <div class="avatar-image-container">
+                        <img
+                            src="stacken.png"
+                            alt="Avatar de STACKEN"
+                            class="avatar-image"
+                            id="stackenAvatar"
+                            draggable="false"
+                        >
+
+                        <!-- Reflexo dinâmico -->
+                        <span
+                            class="avatar-shine"
+                            aria-hidden="true"
+                        ></span>
+                    </div>
+
+
+                    <!-- =====================================
+                         EMBLEMA FIXER
+                    ====================================== -->
+                    <div
+                        class="fixer-badge tooltip-target"
+                        id="fixerBadge"
+                        data-tooltip="The Fixer!"
+                        tabindex="0"
+                        aria-label="The Fixer!"
+                    >
+                        <span
+                            class="fixer-badge__glow"
+                            aria-hidden="true"
+                        ></span>
+
+                        <img
+                            src="fixer.png"
+                            alt="Emblema Fixer"
+                            class="fixer-image"
+                            draggable="false"
+                        >
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- =============================================
+                 IDENTIDADE
+            ============================================== -->
+            <header class="profile-content">
+
+                <div class="status-line">
+                    <span
+                        class="status-indicator"
+                        aria-hidden="true"
+                    ></span>
+
+                    <span>ONLINE</span>
+                </div>
+
+                <h1 id="profileName" class="profile-name">
+                    <span>STACKEN</span>
+                </h1>
+
+                <p class="profile-role">
+                    Developer
+                    <span class="role-separator" aria-hidden="true"></span>
+                    Fixer
+                    <span class="role-separator" aria-hidden="true"></span>
+                    Technology Enthusiast
+                </p>
+
+                <div
+                    class="signature-line"
+                    aria-hidden="true"
+                >
+                    <span></span>
+                    <i></i>
+                    <span></span>
+                </div>
+
+            </header>
+
+
+            <!-- Detalhes discretos -->
+            <div class="card-details" aria-hidden="true">
+                <span class="corner corner--top-left"></span>
+                <span class="corner corner--top-right"></span>
+                <span class="corner corner--bottom-left"></span>
+                <span class="corner corner--bottom-right"></span>
+            </div>
+
+        </article>
+
+    </main>
+
+
+    <!-- =====================================================
+         TOOLTIP GLOBAL
+         Uma única tooltip é reutilizada pelo avatar e badge.
+    ====================================================== -->
+    <div
+        class="premium-tooltip"
+        id="premiumTooltip"
+        role="tooltip"
+        aria-hidden="true"
+    >
+        <span class="tooltip-dot"></span>
+
+        <span
+            class="tooltip-text"
+            id="tooltipText"
+        ></span>
+    </div>
+
+
+    <!-- JavaScript externo -->
+    <script src="script.js"></script>
+
+</body>
+</html>
